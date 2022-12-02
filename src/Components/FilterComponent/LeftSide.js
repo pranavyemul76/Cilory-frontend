@@ -6,7 +6,6 @@ import { GenrateUrl, GetParams } from "../../Utils/Getparams";
 
 function LeftSide({ handelFilterItemsShow, show }) {
   const location = useLocation();
-
   const [genrateUrl, SetgenrateUrl] = useState({});
   const navigate = useNavigate();
   const FilterListData = useSelector((state) => {
@@ -14,9 +13,10 @@ function LeftSide({ handelFilterItemsShow, show }) {
   });
 
   const { slug } = useParams();
+
   useEffect(() => {
     SetgenrateUrl(GetParams(location.search));
-  }, [slug]);
+  }, [location.pathname]);
   const handelCheckBox = (e) => {
     const Url = GenrateUrl(e, genrateUrl);
     SetgenrateUrl(Url);

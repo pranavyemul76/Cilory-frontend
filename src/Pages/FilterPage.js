@@ -27,11 +27,13 @@ function FilterPage() {
   const handelFilterItemsShow = () => {
     setShow(!show);
   };
-  useEffect(() => {
+
+  const FetchData = (params) => {
     dispatch(Setloader(true));
     instance
       .get(
-        `/getproduct${loaction.pathname}${loaction.search && loaction.search}`
+        `/getproduct${loaction.pathname}${loaction.search && loaction.search}`,
+        { signal: params }
       )
       .then((response) => {
         dispatch(SetProductList(response.data.products));
@@ -41,13 +43,30 @@ function FilterPage() {
         dispatch(Setloader(false));
       })
       .catch((error) => {
-        dispatch(SetStatus(false));
+        if (error.message !== "canceled") dispatch(SetStatus(false));
         dispatch(SetMessage("something went wrong"));
       });
-  }, [loaction.search, loaction.pathname]);
+  };
+
+  const Fetch = useCallback(FetchData, [
+    loaction.search,
+    loaction.pathname,
+    dispatch,
+  ]);
+  useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+    Fetch(signal);
+    return () => {
+      controller.abort();
+    };
+  }, [Fetch]);
+
+  //   const controller = new AbortController();
+  //   const signal = controller.signal;
   return (
     <Container fluid className="FilterComponentContainer">
-      {data.status == false && (
+      {data.status === false && (
         <AlertNotification title={data.message}></AlertNotification>
       )}
       <Row className="FilterComponentRow">

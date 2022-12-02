@@ -1,4 +1,6 @@
 const GetParams = (query) => {
+  query = decodeURI(query);
+
   if (query) {
     const queryString = query.split("?")[1];
     if (queryString.length > 0) {
@@ -6,13 +8,15 @@ const GetParams = (query) => {
       const paramsObj = {};
       params.forEach((param) => {
         const keyValue = param.split("=");
-        paramsObj[keyValue[0]] = keyValue[1].split(",");
+        if (keyValue[1]) {
+          paramsObj[keyValue[0]] = keyValue[1].split(",");
+        }
       });
-      console.log(paramsObj);
+
       return paramsObj;
     }
   }
-  console.log({});
+
   return {};
 };
 
