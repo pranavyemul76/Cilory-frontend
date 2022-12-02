@@ -1,0 +1,74 @@
+.select-address {
+  padding: 20px;
+  min-height: 230px;
+}
+.select-address-label {
+  display: block;
+}
+.ByeAddresssection h4 {
+  font-size: 24px;
+  font-weight: 300;
+  margin-top: 30px;
+}
+.bye-address {
+  background-color: #b4dfde2e;
+  border: 1px solid rgba(95, 158, 160, 0.483);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(252, 252, 252, 0.15) 0px 1px 3px 1px;
+  color: rgb(7, 7, 7);
+  font-weight: 400;
+  padding: 0;
+  margin-bottom: 20px;
+}
+.border-right {
+  border-right: 1px solid rgba(95, 158, 160, 0.442);
+}
+.new-address {
+  min-height: 230px;
+}
+.home-select {
+  font-size: small;
+  border: 1px solid rgba(95, 158, 160, 0.483);
+  background-color: cadetblue;
+  color: white;
+  border-radius: 3px;
+  padding: 3px;
+}
+.select-address-input {
+  position: absolute;
+}
+.address-detail {
+  position: relative;
+  display: inline-block;
+  margin-left: 25px;
+}
+.address-detail p {
+  margin-bottom: 3px !important;
+  font-size: smaller;
+}
+
+.home-select {
+  float: right;
+}
+.addressdeleteedit {
+  border: 1px solid rgba(95, 158, 160, 0.048);
+  width: 100%;
+}
+.addressdeleteedit button {
+  width: 50%;
+  background-color: #cfdfc025;
+  border: 0px;
+  padding: 4px;
+  border: 1px solid rgba(95, 158, 160, 0.292);
+  color: #213e3f;
+  font-weight: 300;
+}
+@media (min-width: 230px) and (max-width: 480px) {
+  .border-right {
+    border-right: 0px;
+  }
+  .select-address {
+    padding: 20px;
+    min-height: 130px;
+  }
+}
