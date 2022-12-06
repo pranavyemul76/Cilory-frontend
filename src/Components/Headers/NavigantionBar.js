@@ -4,9 +4,13 @@ import RightUserNav from "./RightUserNav";
 import { instance } from "../../Services/Axiosservices";
 import MasterCategory from "./MasterCategory";
 
+import { useDispatch } from "react-redux";
+
 export const NavigantionBar = () => {
   const [NavShow, SetNavShow] = useState(false);
   const [category, setcategory] = useState([]);
+  const dispatch = useDispatch();
+  console.log(NavShow);
   useEffect(() => {
     instance.get("/getcategory").then((response) => {
       setcategory(response.data.Category);
@@ -59,6 +63,7 @@ export const NavigantionBar = () => {
                         key={index}
                         i={i}
                         index={index}
+                        SetNavShow={SetNavShow}
                       ></MasterCategory>
                     );
                   })}

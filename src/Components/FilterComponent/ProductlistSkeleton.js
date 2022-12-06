@@ -10,11 +10,11 @@ function ProductlistSkeleton() {
         21, 22, 23, 24,
       ].map((ske, i) => {
         return (
-          <Col className="">
-            <div class="card">
-              <div class="card__image loading"></div>
-              <div class="card__title loading"></div>
-              <div class="card__description loading"></div>
+          <Col className="" key={i}>
+            <div className="card">
+              <div className="card__image loading"></div>
+              <div className="card__title loading"></div>
+              <div className="card__description loading"></div>
             </div>
           </Col>
         );

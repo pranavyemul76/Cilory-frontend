@@ -5,14 +5,17 @@ import "./index.css";
 import store from "./store";
 import { Provider } from "react-redux";
 import Routers from "./Components/Routers";
+import { CookiesProvider } from "react-cookie";
 const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <Routers></Routers>
-    </Provider>
+    <CookiesProvider>
+      <Provider store={store}>
+        <Routers></Routers>
+      </Provider>
+    </CookiesProvider>
   </React.StrictMode>
 );
 

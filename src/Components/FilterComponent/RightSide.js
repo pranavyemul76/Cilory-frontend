@@ -3,7 +3,7 @@ import { Col, Row } from "react-bootstrap";
 import ProductCard from "./ProductCard";
 import { useSelector } from "react-redux";
 import ProductlistSkeleton from "./ProductlistSkeleton";
-
+import { Link } from "react-router-dom";
 function RightSide({ handelFilterItemsShow }) {
   const Products = useSelector((state) => {
     return state.FilterProduct;
@@ -45,7 +45,9 @@ function RightSide({ handelFilterItemsShow }) {
           Products?.ProductListData.map((item, index) => {
             return (
               <Col key={index}>
-                <ProductCard item={item} />
+                <Link to={`/productDetail/${item._id}`}>
+                  <ProductCard item={item} />
+                </Link>
               </Col>
             );
           })

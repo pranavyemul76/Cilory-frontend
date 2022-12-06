@@ -9,9 +9,9 @@ header {
 
   background-color: white;
 }
-
 main {
   padding-top: 100px;
+  min-height: 80vh;
 }
 .Home-Topcategory-list {
   text-align: center;

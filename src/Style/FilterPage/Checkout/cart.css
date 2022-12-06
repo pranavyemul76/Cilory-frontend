@@ -89,6 +89,29 @@
   width: 57%;
   height: fit-content;
 }
+.cartemptysection .cartempty {
+  min-height: 70vh;
+  min-width: 80%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.cartemptysection .cartempty p {
+  font-weight: 300;
+  font-size: x-large;
+  padding: 7px 10px;
+}
+.cartemptysection .cartemptyicon {
+  margin-bottom: 10px;
+}
+.cartempty button {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px !important;
+  font-size: large;
+  font-weight: 300;
+  text-transform: uppercase;
+  padding: 8px;
+}
 
 @media (min-width: 230px) and (max-width: 480px) {
   .cartinfo {

@@ -4,7 +4,7 @@ import TopCategory from "./TopCategory";
 // import "../../Style/bootstrap-grid.css";
 // import "../../Style/bootstrap.css";
 // import "../../Style/bootstrap.min.css";
-function MasterCategory({ i, index }) {
+function MasterCategory({ i, index, SetNavShow }) {
   const handleone = (e) => {
     const li = document.querySelectorAll(".top-category-name");
 
@@ -21,7 +21,7 @@ function MasterCategory({ i, index }) {
           {i.name}
         </Link>
       </div>
-      <TopCategory i={i} index={index} />
+      <TopCategory i={i} index={index} SetNavShow={SetNavShow} />
     </li>
   );
 }

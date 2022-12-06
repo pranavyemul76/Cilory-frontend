@@ -5,10 +5,10 @@ import RightTick from "../CheckOutComponents/RightTick";
 import Nav from "react-bootstrap/Nav";
 import Tab from "react-bootstrap/Tab";
 import { instance } from "../../Services/Axiosservices";
-import "../../Style/FilterPage/Checkout/payment.css";
-function Payment() {
-  const navigate = useNavigate();
 
+import "../../Style/FilterPage/Checkout/payment.css";
+function Payment({ value }) {
+  const navigate = useNavigate();
   const [loading, setloading] = useState({
     inti: false,
     process: false,
@@ -28,8 +28,8 @@ function Payment() {
           const verifyUrl = "/verify";
           const { data } = await instance.post(verifyUrl, response);
           console.log(data);
-          setloading({ ...loading, init: true });
-          navigate.push("paymentresponse");
+          setloading({ ...loading, init: false });
+          navigate("");
         } catch (error) {
           console.log(error);
         }
@@ -54,12 +54,11 @@ function Payment() {
   };
   const cashondelivery = () => {
     setloading({ ...loading, init: true });
-
     setTimeout(() => {
       setloading({ ...loading, done: true });
     }, 6000);
     setTimeout(() => {
-      navigate.push("paymentresponse");
+      navigate("/");
     }, 8000);
   };
   return (
@@ -72,7 +71,7 @@ function Payment() {
                 <Nav.Link
                   eventKey="first"
                   onClick={() => {
-                    handlePayment(1000);
+                    handlePayment(value);
                   }}
                 >
                   Net Banking

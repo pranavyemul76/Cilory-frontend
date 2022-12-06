@@ -1,6 +1,6 @@
 import React from "react";
 import SubCategory from "./SubCategory";
-function TopCategory({ index, i }) {
+function TopCategory({ index, i, SetNavShow }) {
   return (
     <div className="overlay-display" key={index}>
       <div className="overlay-display-container">
@@ -9,7 +9,11 @@ function TopCategory({ index, i }) {
             {i.subcategory.map((cate, indexs) => {
               return (
                 <ul className="category-ul-list" key={indexs + cate.name}>
-                  <SubCategory cate={cate} indexs={indexs} />
+                  <SubCategory
+                    cate={cate}
+                    indexs={indexs}
+                    SetNavShow={SetNavShow}
+                  />
                 </ul>
               );
             })}

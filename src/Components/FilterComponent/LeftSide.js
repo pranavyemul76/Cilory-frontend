@@ -45,35 +45,39 @@ function LeftSide({ handelFilterItemsShow, show }) {
       <Row className={`FilterItemsRow`}>
         <ul>
           {FilterListData?.FilterListData[0] &&
-            Object.entries(FilterListData.FilterListData[0]).map((item) => {
-              return (
-                <div>
-                  <li className="FilterHeadingTitle">{item[0]}</li>
-                  <div className="FilterItemsContainer">
-                    {item[1].map((filteritem) => {
-                      return (
-                        <li className="FilterItem">
-                          <label>
-                            <input
-                              type="checkbox"
-                              name={item[0]}
-                              value={filteritem._id}
-                              onChange={handelCheckBox}
-                              checked={
-                                genrateUrl[item[0]]
-                                  ? genrateUrl[item[0]].includes(filteritem._id)
-                                  : false
-                              }
-                            />
-                            <span>{filteritem._id}</span>
-                          </label>
-                        </li>
-                      );
-                    })}
+            Object.entries(FilterListData.FilterListData[0]).map(
+              (item, index) => {
+                return (
+                  <div key={index}>
+                    <li className="FilterHeadingTitle">{item[0]}</li>
+                    <div className="FilterItemsContainer">
+                      {item[1].map((filteritem, nestedindex) => {
+                        return (
+                          <li className="FilterItem" key={nestedindex}>
+                            <label>
+                              <input
+                                type="checkbox"
+                                name={item[0]}
+                                value={filteritem._id}
+                                onChange={handelCheckBox}
+                                checked={
+                                  genrateUrl[item[0]]
+                                    ? genrateUrl[item[0]].includes(
+                                        filteritem._id
+                                      )
+                                    : false
+                                }
+                              />
+                              <span>{filteritem._id}</span>
+                            </label>
+                          </li>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              }
+            )}
           <div>
             <li className="FilterHeadingTitle">Categories</li>
             <div>

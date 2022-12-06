@@ -16,13 +16,13 @@ import { Setloader } from "../store/Logic/FilterPageSlice";
 import { SetFilterItems } from "../store/Logic/FilterPageSlice";
 import { useLocation } from "react-router-dom";
 import AlertNotification from "../Components/Notifications/AlertNotification";
+
 function FilterPage() {
   const [show, setShow] = useState(false);
   const loaction = useLocation();
   const data = useSelector((state) => {
     return state.FilterProduct;
   });
-
   const dispatch = useDispatch();
   const handelFilterItemsShow = () => {
     setShow(!show);

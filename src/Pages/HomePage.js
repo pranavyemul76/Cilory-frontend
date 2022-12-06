@@ -2,7 +2,6 @@ import React from "react";
 import { Container, Row, Image, Carousel, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../Style/Home/Home.css";
-
 import "../Style/Home/Banner.css";
 function HomePage() {
   return (

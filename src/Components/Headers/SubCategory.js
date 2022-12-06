@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-function SubCategory({ indexs, cate, className = null }) {
-  const testone = (e) => {
+function SubCategory({ indexs, cate, className = null, SetNavShow }) {
+  const testone = (e, check) => {
+    if (check) {
+      SetNavShow(false);
+    }
+
     const li = document.querySelectorAll(".category-ul-list");
     for (let i = 0; i < li.length; i++) {
       li[i].classList.remove("ulactive");
@@ -10,7 +14,11 @@ function SubCategory({ indexs, cate, className = null }) {
   };
   return (
     <>
-      <li className={`${className} `} key={indexs} onClick={(e) => testone(e)}>
+      <li
+        className={`${className}`}
+        key={indexs}
+        onClick={(e) => testone(e, className)}
+      >
         <Link to={className ? `${cate.slug}` : "#"}>{cate.name}</Link>
       </li>
       {cate.subcategory.map((lowcategory, indexes) => {
@@ -20,6 +28,7 @@ function SubCategory({ indexs, cate, className = null }) {
             indexs={indexes}
             cate={lowcategory}
             className="category-nested-category-list"
+            SetNavShow={SetNavShow}
           />
         );
       })}

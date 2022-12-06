@@ -32,10 +32,7 @@
   color: white;
   letter-spacing: 3px;
 }
-.ByeNow button:focus {
-  animation: btn 1s;
-  animation-iteration-count: 1;
-}
+
 .PriceCalculation .total,
 .totalprice {
   font-weight: 600;

@@ -6,7 +6,7 @@ function RightUserNav() {
   return (
     <div className="RightUserNav">
       <div className="profile">
-        <Link to="/">
+        <Link to="/account/overview">
           <svg
             data-v-4577ec70=""
             fill="#2196F3"
