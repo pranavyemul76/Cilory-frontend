@@ -1,47 +1,43 @@
-# Getting Started with Create React App and Redux
+# React E-commerce Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+## Features
 
-## Available Scripts
+- It has strong authentication system with JWT Token.
+- Login / Signup with email
+- It has Razorpay Integration so that it can get money from anywhere
+- Use Encryption for Password
+- Use Cookies to Authenticate User
+- One time Login (valid up to 30 days)
+- View & Update Account
+- Add / Remove Multiple Addresses
+- Add / Remove item to Cart
+- Make Order with COD / Online Payment
+- View Orders History
 
-In the project directory, you can run:
+## Demo
 
-### `npm start`
+https://deployments-eta.vercel.app
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🚀 About Me
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+I'm a full stack developer...
 
-### `npm test`
+## Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Client:** React, Redux, Bootstrap
 
-### `npm run build`
+**Server:** Node, Express Mongoose, MongoDB, JSON WEB Token
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Deployment
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To deploy this project run
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+  npm run build
+```
 
-### `npm run eject`
+## Run Project
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+To Run this project
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-![screentshot](<https://github.com/pranavyemul76/Deployment/blob/master/Screenshot%20(104).png>)
+npm run start
