@@ -3,16 +3,16 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "../Style/FilterPage/Checkout/checkout.css";
 import Cart from "../Components/CheckOutComponents/cart";
-import Address from "../Components/CheckOutComponents/address";
+//import Address from "../Components/CheckOutComponents/address";
 import Payment from "../Components/CheckOutComponents/Payment";
 import { useSelector } from "react-redux";
 
 import Skeleton from "../Components/Notifications/Skeleton";
 import { Link } from "react-router-dom";
-import Input from "../Components/CheckOutComponents/AddressData";
-import { SetSizeNotificationDeskTop } from "../store/Logic/CartSlice";
+//import Input from "../Components/CheckOutComponents/AddressData";
 import { useDispatch } from "react-redux";
 import AddressList from "../Components/CheckOutComponents/AddressList";
+import { SetNotification } from "../store/Logic/NotificationSlice";
 function CheckOutPage() {
   const { checkout } = useParams();
 
@@ -20,7 +20,7 @@ function CheckOutPage() {
   const [SelectAddress, SetSelectAddress] = React.useState({});
   const navigate = useNavigate();
   const CartData = useSelector((state) => {
-    return state.cart;
+    return state.cartslic;
   });
   const handelnavigate = () => {
     if (checkout === "cart") {
@@ -30,23 +30,22 @@ function CheckOutPage() {
         navigate("/checkout/payment");
       } else {
         dispatch(
-          SetSizeNotificationDeskTop({
-            status: true,
-            messeage: "please Select address",
-          })
+          SetNotification({ status: true, message: "please select address" })
         );
       }
     }
   };
   return (
     <Container>
-      {!CartData.loader ? (
+      {CartData.loader ? (
         <Skeleton></Skeleton>
-      ) : CartData?.data?.products?.cartitem.length >= 1 ? (
+      ) : CartData.cartItems.length >= 1 ? (
         <>
           {checkout === "cart" && (
             <Row>
-              <h3 className="checkoutHeading">Shopping Bag (Cart Count)</h3>
+              <h3 className="checkoutHeading">
+                Shopping Bag ({CartData.count})
+              </h3>
             </Row>
           )}
           {checkout === "address" && (
@@ -62,7 +61,7 @@ function CheckOutPage() {
           <Row className="justify-content-center checkoutrow">
             {checkout === "cart" && (
               <Col lg={6} xs={12} className="cartcol">
-                {CartData.data.products.cartitem.map((item, index) => {
+                {CartData.cartItems.map((item, index) => {
                   return (
                     <Cart
                       key={index}
@@ -82,7 +81,7 @@ function CheckOutPage() {
               </Col>
             )}
             {checkout === "payment" && (
-              <Payment value={CartData.data.summery.cartvalue} />
+              <Payment value={CartData.summery.subtotal} />
             )}
             <Col className="PriceCalculation p-4 pt-0" lg={3} xs={12}>
               <div className="PriceDeatil">
@@ -94,15 +93,13 @@ function CheckOutPage() {
                   Subtotal
                 </Col>
                 <Col lg={5} xs={5} className="subtotalprice text-end">
-                  ₹ {CartData.data.summery.total}
+                  ₹ {CartData.summery.total}
                 </Col>
                 <Col lg={7} xs={7} className="subtotal">
                   Discount
                 </Col>
                 <Col lg={5} xs={5} className="subtotalprice text-end">
-                  -₹{" "}
-                  {CartData.data.summery.total -
-                    CartData.data.summery.cartvalue}
+                  -₹ {CartData.summery.discount}
                 </Col>
                 <Col lg={7} xs={7} className="shipping">
                   Shipping
@@ -114,13 +111,13 @@ function CheckOutPage() {
                   Total<span>(Incl. of all taxes)</span>
                 </Col>
                 <Col lg={5} xs={5} className="totalprice text-end">
-                  ₹ {CartData.data.summery.cartvalue}
+                  ₹ {CartData.summery.subtotal}
                 </Col>
                 {
                   <Col lg={12} xs={12} className="ByeNow">
                     <div className="ByeNowBox">
                       <div className="ByeNowtotal">
-                        ₹ {CartData.data.summery.cartvalue}
+                        ₹ {CartData.summery.subtotal}
                       </div>
                       {checkout !== "payment" && (
                         <button onClick={handelnavigate}>

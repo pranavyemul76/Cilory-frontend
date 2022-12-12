@@ -340,7 +340,7 @@ hr {
     bottom: 0%;
     width: 100%;
     background-color: white;
-    z-index: 100;
+    z-index: 1;
     padding-bottom: 7px;
     padding-top: 7px;
     flex-direction: row-reverse;

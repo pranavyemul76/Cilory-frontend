@@ -7,25 +7,23 @@ import { GetUserOrders } from "../store/Logic/Account/AccountSlice";
 import AddressList from "../Components/CheckOutComponents/AddressList";
 
 import OrderList from "../Components/AccountComponents/OrderList";
-import { UserLogin } from "../store/Logic/User/UserSlice";
 
 function AccountPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const orderdata = useSelector((state) => {
+  const UserData = useSelector((state) => {
     return state.AccountDetail;
   });
-  const userlofin = useSelector((state) => {
-    return state;
-  });
-  useEffect(() => {
+
+  const FetchOrderData = React.useCallback(() => {
     dispatch(GetUserOrders());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
-    window.scroll(0, 0);
-  }, [slug]);
+    FetchOrderData();
+  }, [FetchOrderData]);
+
   return (
     <Container className="overview-section">
       <Tab.Container id="left-tabs-example" activeKey={slug}>
@@ -68,8 +66,8 @@ function AccountPage() {
                         height={100}
                       />
                     </div>
-                    <div className="user-name">user name</div>
-                    <div className="user-phone">9049263174</div>
+                    <div className="user-name">{UserData.data.email}</div>
+                    <div className="user-phone">{UserData.data.phone}</div>
                     <div className="profile-edit">Edit</div>
                   </div>
                   <br />
@@ -85,16 +83,14 @@ function AccountPage() {
                   </div>
 
                   <div className="your-orders">
-                    {orderdata.orderloader ? (
+                    {UserData.orderloader ? (
                       <>
                         <div className="d-flex justify-content-center align-items-center">
                           <Spinner animation="grow" variant="info" />
                         </div>
                       </>
-                    ) : orderdata?.OrderData?.orders?.length >= 1 ? (
-                      <Link
-                        to={`/oderdetail/${orderdata.OrderData.orders[0]._id}`}
-                      >
+                    ) : UserData.OrderData.length >= 1 ? (
+                      <Link to={`/oderdetail/${UserData.OrderData[0]._id}`}>
                         <Row className="order-item-row mb-3">
                           <Col xs={12}>
                             <div className="d-flex justify-content-between toporderinfo width80">
@@ -110,7 +106,7 @@ function AccountPage() {
                           <Col xs={3} lg={2}>
                             <Image
                               src={
-                                orderdata.OrderData.orders[0].product
+                                UserData.OrderData[0].orders[0].product
                                   .searchImage
                               }
                               className="w-100"
@@ -151,7 +147,7 @@ function AccountPage() {
                   <br />
                   <div className="see-address">
                     <h5 className="your-address-heading">
-                      Your Address ({"lenght"})
+                      Your Address ({UserData.addresses.length})
                     </h5>
                     <div
                       className="view-address"
@@ -161,19 +157,23 @@ function AccountPage() {
                     </div>
                   </div>
                   <div className="your-address">
-                    {orderdata?.data?.user?.address?.length >= 1 && (
+                    {UserData.addresses.length >= 1 ? (
                       <>
                         <div className="overview-address-name mb-1">
-                          {orderdata.data.user.address[0]?.name}
+                          {UserData.addresses[0]?.name}
                         </div>
                         <div className="overview-address-info mb-1">
-                          {orderdata.data.user.address[0]?.address}
+                          {UserData.addresses[0]?.address}
                         </div>
                         <div className="overview-address-phone mb-1">
                           Mobile No :
-                          <span>{orderdata.data.user.address[0]?.phone}</span>
+                          <span>&nbsp;{UserData.addresses[0]?.phone}</span>
                         </div>
                       </>
+                    ) : (
+                      <div className="d-flex justify-content-center">
+                        <Link to="/account/address"> Add New</Link>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -184,7 +184,12 @@ function AccountPage() {
                 {<AddressList />}
               </Tab.Pane>
               <Tab.Pane eventKey="orders" className="tab-orders">
-                {<OrderList orderdata={orderdata} />}
+                {
+                  <OrderList
+                    orderdata={UserData.OrderData}
+                    loader={UserData.orderloader}
+                  />
+                }
               </Tab.Pane>
             </Tab.Content>
           </Col>

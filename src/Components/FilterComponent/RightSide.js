@@ -4,11 +4,11 @@ import ProductCard from "./ProductCard";
 import { useSelector } from "react-redux";
 import ProductlistSkeleton from "./ProductlistSkeleton";
 import { Link } from "react-router-dom";
+
 function RightSide({ handelFilterItemsShow }) {
   const Products = useSelector((state) => {
-    return state.FilterProduct;
+    return state.Filter;
   });
-
   return (
     <Col className="FilterRightSide">
       <Row className="FilterSortForPhone" xs={2}>

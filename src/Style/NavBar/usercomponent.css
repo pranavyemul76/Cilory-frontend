@@ -57,6 +57,9 @@
   .Trending-heading {
     display: none;
   }
+  .logout-btn {
+    border: none;
+  }
   .Usercomponent-phone .Usercomponent-section {
     visibility: visible;
     opacity: 1;

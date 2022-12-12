@@ -9,21 +9,23 @@ function Order({ i }) {
             order placed : <span>23 oct 2080</span>
           </div>
           <div>
-            Order ID : <span>#12sksk</span>
+            Order ID : <span>{i._id}</span>
           </div>
         </div>
       </Col>
       <hr />
       <Col xs={3} lg={2}>
         <Image
-          src={i.product.searchImage}
+          src={i.orders[0].product.searchImage}
           className="w-100"
           layout="responsive"
         />
       </Col>
       <Col xs={7} lg={8}>
         <div>
-          <div className="order-product-name">{i.product.productName}</div>
+          <div className="order-product-name">
+            {i.orders[0].product.productName}
+          </div>
           <div className="order-product-price">
             price: <span>1234</span>
           </div>

@@ -7,10 +7,17 @@ function SubCategory({ indexs, cate, className = null, SetNavShow }) {
     }
 
     const li = document.querySelectorAll(".category-ul-list");
-    for (let i = 0; i < li.length; i++) {
-      li[i].classList.remove("ulactive");
+    if (e.target.parentNode.parentNode.classList.value.includes("ulactive")) {
+      for (let i = 0; i < li.length; i++) {
+        li[i].classList.remove("ulactive");
+      }
+    } else {
+      for (let i = 0; i < li.length; i++) {
+        li[i].classList.remove("ulactive");
+      }
+
+      e.target.parentNode.parentNode.classList.add("ulactive");
     }
-    e.target.parentNode.parentNode.classList.add("ulactive");
   };
   return (
     <>

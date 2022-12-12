@@ -11,7 +11,7 @@ function Address({ item, SetSelectAddress, SelectAddress }) {
     <Col lg={5} xs={12} key={"1"} className={`bye-address`}>
       <div className="select-address">
         <label className={`select-address-label`}>
-          <span className="home-select">{"home"}</span>
+          <span className="home-select">{item.place}</span>
           <input
             type={"radio"}
             className={`select-address-input`}
@@ -25,17 +25,17 @@ function Address({ item, SetSelectAddress, SelectAddress }) {
             {/* <span className={focusinput}></span> */}
             <p>{item.name}</p>
             <p>
-              {"address"}
+              {item.address}
               <br />
               <br />
               <span>
-                {"i.city"}
+                {item.city}
                 <br />
-                {"i.state"}
+                {item.state}
               </span>
             </p>
             <p>
-              Mobile <strong>{"i.phone"}</strong>
+              Mobile <strong>{item.phone}</strong>
             </p>
           </span>
         </label>

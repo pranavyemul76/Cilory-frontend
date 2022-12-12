@@ -14,7 +14,7 @@ function RightTick() {
           cy="26"
           r="25"
           fill="none"
-        />{" "}
+        />
         <path
           className="checkmark__check"
           fill="none"

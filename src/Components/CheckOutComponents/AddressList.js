@@ -14,7 +14,7 @@ function AddressList({ SelectAddress, SetSelectAddress }) {
     <Skeleton></Skeleton>
   ) : (
     <Row className="justify-content-around">
-      {Addressdata?.data?.user?.address.map((item, index) => {
+      {Addressdata.addresses.map((item, index) => {
         return (
           <Address
             item={item}

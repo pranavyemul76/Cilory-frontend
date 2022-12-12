@@ -16,12 +16,13 @@ function ProductCard({ item }) {
           />
         </div>
         <div className="Productinfo">
-          <div className="ProductName">Product Name</div>
+          <div className="Productbrand">{item.brand}</div>
+          <div className="ProductName">{item.productName}</div>
           <div className="ProductPrice">
-            <span className="price">Rs 300</span>
+            <span className="price">Rs {item.price}</span>
 
-            <span className="mrp">Rs.400</span>
-            <span className="discount">(50% OFF)</span>
+            <span className="mrp">Rs.{item.mrp}</span>
+            <span className="discount">{item.discountDisplayLabel}</span>
           </div>
         </div>
       </div>

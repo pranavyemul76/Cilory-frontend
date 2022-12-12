@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import {
   Col,
   Container,
@@ -13,13 +13,11 @@ import "../Style/Productdetail.css";
 import { useParams } from "react-router-dom";
 import Skeleton from "../Components/Notifications/Skeleton";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  AddToCartItem,
-  GetCartData,
-  SetSizeNotificationDeskTop,
-} from "../store/Logic/CartSlice";
+import { AddToCartItem } from "../store/Logic/Cart/CartsSlice";
 import { GetProductDetail } from "../store/Logic/ProductDetailSlice";
 import { useNavigate } from "react-router-dom";
+import { SetNotification } from "../store/Logic/NotificationSlice";
+
 function ProductDetail() {
   const product = useSelector((state) => {
     return state.ProductDetail;
@@ -28,13 +26,9 @@ function ProductDetail() {
   const isAuthenticated = useSelector((state) => {
     return state.User.isAuthenticated;
   });
-  React.useEffect(() => {
-    window.scroll(0, 0);
-  }, []);
   const dispatch = useDispatch();
   const [pincode, setpincode] = React.useState(undefined);
   const [size, setsize] = React.useState(false);
-
   const [SizeNotification, SetSizeNotification] = React.useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -42,7 +36,6 @@ function ProductDetail() {
     e.preventDefault();
     console.log(pincode);
   };
-
   const settingsize = (e) => {
     setsize(e.target.value);
   };
@@ -64,30 +57,29 @@ function ProductDetail() {
         SetSizeNotification(true);
       } else {
         dispatch(
-          SetSizeNotificationDeskTop({
-            status: true,
-            messeage: "please select Size",
-          })
+          SetNotification({ status: true, message: "please select size" })
         );
       }
     } else {
       SetSizeNotification(false);
-      const response = await dispatch(AddToCartItem({ id: id, size: size }));
-      if (response.meta.requestStatus === "fulfilled") {
-        dispatch(
-          SetSizeNotificationDeskTop({
-            status: true,
-            messeage: "add to cart success",
-          })
-        );
+      if (isAuthenticated) {
+        const response = await dispatch(AddToCartItem({ id: id, size: size }));
+        if (response.meta.requestStatus === "fulfilled") {
+          dispatch(
+            SetNotification({ status: true, message: "add to cart success" })
+          );
+        }
       } else {
         navigate("/user/login");
       }
     }
   };
-  useEffect(() => {
+  const FetchProductDetail = useCallback(() => {
     dispatch(GetProductDetail({ id: id }));
-  }, [id]);
+  }, [id, dispatch]);
+  useEffect(() => {
+    FetchProductDetail();
+  }, [FetchProductDetail]);
   return (
     <div>
       <Container fluid>
@@ -95,7 +87,7 @@ function ProductDetail() {
           <Skeleton></Skeleton>
         ) : (
           <>
-            {product.product.map((item) => {
+            {product?.product?.map((item) => {
               return (
                 <div key={item._id}>
                   <Row>

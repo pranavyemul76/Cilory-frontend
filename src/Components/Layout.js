@@ -3,19 +3,22 @@ import Footer from "./Footer";
 import { NavigantionBar } from "./Headers/NavigantionBar";
 import { useSelector } from "react-redux";
 import Notification from "./Notifications/Notification";
+import AlertNotification from "./Notifications/AlertNotification";
 function Layout({ children }) {
-  const CartData = useSelector((state) => {
-    return state.cart;
+  const notification = useSelector((state) => {
+    return state.Notification;
   });
+
   return (
     <>
       <header>
-        {CartData.SizeNotificationDeskTop.status && (
-          <Notification>
-            {CartData.SizeNotificationDeskTop.messeage}
-          </Notification>
+        {notification.status && (
+          <Notification>{notification.message}</Notification>
         )}
+
         <NavigantionBar></NavigantionBar>
+
+        <AlertNotification></AlertNotification>
       </header>
       <main>{children}</main>
       <footer>

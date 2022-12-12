@@ -1,16 +1,16 @@
-import { instance } from "../../../Services/Axiosservices";
+import { PrivateRoute } from "../../../Services/Axiosservices";
 
 export function GetUserInfoAPI() {
-  return instance.get("/getuserinfo");
+  return PrivateRoute.get("/getuserinfo");
 }
 
 export function UpdateAddressAPI(item) {
-  return instance.put("/updateaddress", item);
+  return PrivateRoute.put("/updateaddress", item);
 }
 
 export function DeleteAddressAPI(id) {
-  return instance.put("/deleteaddress", { id });
+  return PrivateRoute.put("/deleteaddress", { id });
 }
 export function GetUserOrdersAPI() {
-  return instance.get("/getorderproduct");
+  return PrivateRoute.get("/getorderproduct");
 }

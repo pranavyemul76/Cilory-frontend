@@ -100,6 +100,38 @@ input {
   font-size: 1.2rem;
   border-radius: 25px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.side-side {
+  animation: 0.4s side;
+  position: relative;
+  animation-iteration-count: 3;
+}
+@keyframes side {
+  0% {
+    left: -8px;
+  }
+  50% {
+    left: 0;
+  }
+  75% {
+    left: -8px;
+  }
+  100% {
+    left: 0;
+  }
+}
+.login-loader {
+  background: #a4243b;
+  color: white;
+  padding: 17.8px 0;
+  font-size: 1.2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
 }
 
 .userloginsignup input[type="submit"]:hover {

@@ -8,11 +8,20 @@ function MasterCategory({ i, index, SetNavShow }) {
   const handleone = (e) => {
     const li = document.querySelectorAll(".top-category-name");
 
-    for (i = 0; i < li.length; i++) {
-      li[i].classList.remove("active");
-    }
+    if (e.target.parentNode.parentNode.classList.value.includes("active")) {
+      for (i = 0; i < li.length; i++) {
+        li[i].classList.remove("active");
+      }
+    } else {
+      for (i = 0; i < li.length; i++) {
+        li[i].classList.remove("active");
+      }
 
-    e.target.parentNode.parentNode.classList.add("active");
+      e.target.parentNode.parentNode.classList.add("active");
+    }
+    // if (e.target.parentNode.parentNode.classList.value.match(/active/i)) {
+    //   e.target.parentNode.parentNode.classList.add("active");
+    // }
   };
   return (
     <li className="top-category-name" key={index + i.name}>

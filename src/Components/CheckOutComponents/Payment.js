@@ -1,13 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { Col, Row, Spinner } from "react-bootstrap";
-import RightTick from "../CheckOutComponents/RightTick";
+import RightTick from "../Notifications/RightTick";
 import Nav from "react-bootstrap/Nav";
 import Tab from "react-bootstrap/Tab";
-import { instance } from "../../Services/Axiosservices";
-
+import { instance, PrivateRoute } from "../../Services/Axiosservices";
+import { SetAlertNotification } from "../../store/Logic/NotificationSlice";
 import "../../Style/FilterPage/Checkout/payment.css";
+import { useDispatch } from "react-redux";
+import { GetCartData } from "../../store/Logic/Cart/CartsSlice";
 function Payment({ value }) {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setloading] = useState({
     inti: false,
@@ -26,12 +29,21 @@ function Payment({ value }) {
       handler: async (response) => {
         try {
           const verifyUrl = "/verify";
-          const { data } = await instance.post(verifyUrl, response);
-          console.log(data);
-          setloading({ ...loading, init: false });
-          navigate("");
+          await instance.post(verifyUrl, response);
+          PrivateRoute.post("/neworderproduct").then((res) => {
+            setloading({ ...loading, init: false });
+            dispatch(
+              GetCartData({ id: undefined, size: undefined, qty: undefined })
+            );
+            navigate(`/oderdetail/${res.data.OrderId}`);
+          });
         } catch (error) {
-          console.log(error);
+          dispatch(
+            SetAlertNotification({
+              alertStatus: true,
+              AlertMesseage: "payment failed",
+            })
+          );
         }
       },
       theme: {
@@ -57,8 +69,15 @@ function Payment({ value }) {
     setTimeout(() => {
       setloading({ ...loading, done: true });
     }, 6000);
+
     setTimeout(() => {
-      navigate("/");
+      PrivateRoute.post("/neworderproduct").then((res) => {
+        setloading({ ...loading, init: false });
+        navigate(`/oderdetail/${res.data.OrderId}`);
+        dispatch(
+          GetCartData({ id: undefined, size: undefined, qty: undefined })
+        );
+      });
     }, 8000);
   };
   return (
@@ -100,7 +119,7 @@ function Payment({ value }) {
                   <hr />
                   <Col xs={12} className="payment-description">
                     <div className="payment-info">
-                      Cash on Delivery service is not available at the selected
+                      Cash on Delivery service is available at the selected
                       address.
                     </div>
                   </Col>

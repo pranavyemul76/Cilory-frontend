@@ -4,13 +4,21 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { UpdateAddress } from "../../store/Logic/Account/AccountSlice";
 import { useDispatch } from "react-redux";
+import { SetAlertNotification } from "../../store/Logic/NotificationSlice";
 function Input({ item, setshow, show }) {
   const dispatch = useDispatch();
   const [Input, SetInput] = useState(item);
   const submitdata = (e) => {
     e.preventDefault();
     setshow(false);
-    dispatch(UpdateAddress({ item: Input }));
+    dispatch(UpdateAddress({ item: Input })).catch((error) => {
+      dispatch(
+        SetAlertNotification({
+          alertStatus: true,
+          AlertMesseage: "Update address failed",
+        })
+      );
+    });
   };
   const handlechange = (e) => {
     SetInput({ ...Input, [e.target.name]: e.target.value });

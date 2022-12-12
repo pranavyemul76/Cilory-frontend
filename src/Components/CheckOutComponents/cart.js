@@ -1,8 +1,8 @@
 import React from "react";
 import { Col, Row, Image } from "react-bootstrap";
 import "../../Style/FilterPage/Checkout/cart.css";
-import { DeleteCartItem, GetCartData } from "../../store/Logic/CartSlice";
 import { useDispatch } from "react-redux";
+import { DeleteCartItem, GetCartData } from "../../store/Logic/Cart/CartsSlice";
 function Cart({ item, loader }) {
   const dispatch = useDispatch();
   return (

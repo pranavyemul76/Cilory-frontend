@@ -47,6 +47,11 @@
   display: none;
 }
 @media (min-width: 230px) and (max-width: 480px) {
+  .checkoutHeading {
+    padding-left: 17px;
+    padding-bottom: 7px;
+    padding-top: 7px;
+  }
   .ByeNowBox {
     display: flex;
     justify-content: space-around;
@@ -68,7 +73,7 @@
   .ByeNow {
     position: fixed;
     bottom: 0%;
-    z-index: 10000;
+    z-index: 8;
     width: 100%;
     left: 0;
     margin-bottom: 0px !important;

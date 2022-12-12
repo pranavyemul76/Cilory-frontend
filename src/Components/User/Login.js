@@ -1,15 +1,16 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
 import "../../Style/User/Login.css";
 import { UserLogin } from "../../store/Logic/User/UserSlice";
 import { useDispatch } from "react-redux";
+
 import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 function Login() {
   const [UserInput, SetUserInput] = React.useState({});
-  const [messeage, Setmesseage] = React.useState(null);
-  const [cookies, setCookie] = useCookies(["usertoken"]);
+  const [, setCookie] = useCookies(["usertoken"]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onchangehandeler = (e) => {
@@ -17,23 +18,37 @@ function Login() {
     const value = e.target.value;
     SetUserInput({ ...UserInput, [name]: value });
   };
+  const UserInfo = useSelector((state) => {
+    return state.User;
+  });
   const onsubmithandler = (e) => {
     e.preventDefault();
+
     dispatch(UserLogin({ datas: UserInput })).then((response) => {
-      Setmesseage(response.payload.messege);
       if (response.payload.auth) {
-        setCookie("user", response.payload.token, { path: "/" });
+        let d = new Date();
+        d.setTime(d.getTime() + 10000 * 60 * 1000);
+        setCookie("user", response.payload.token, { path: "/", expires: d });
         navigate("/");
       }
     });
   };
+
   return (
     <Container className="userloginsignup">
       <Row className="justify-content-center">
         <Col lg={4}>
           <form className="signup" onSubmit={onsubmithandler}>
             <h1>Login</h1>
-            {messeage && <div className="successorerror">{messeage}</div>}
+            {UserInfo.messege && (
+              <div
+                className={`successorerror ${
+                  !UserInfo.loader && !UserInfo.success && "side-side"
+                }`}
+              >
+                {UserInfo.messege}
+              </div>
+            )}
             <div className="signup__field mt-4">
               <input
                 className="signup__input"
@@ -60,7 +75,15 @@ function Login() {
                 Password
               </label>
             </div>
-            <input type="submit" value={"Login"} />
+
+            {UserInfo.loader ? (
+              <div className="login-loader">
+                <Spinner size="sm" animation="border" />
+              </div>
+            ) : (
+              <input type="submit" value={"login"} />
+            )}
+
             <h2>
               Create new ? <Link to="/user/signup">signup</Link>
             </h2>

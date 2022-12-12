@@ -1,21 +1,21 @@
 import React from "react";
-import { Col, Row, Image } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../../Style/Account/order.css";
 import Order from "./Order";
 import Skeleton from "../Notifications/Skeleton";
-function OrderList({ orderdata }) {
+function OrderList({ orderdata, loader }) {
   return (
     <>
       <h4 className=" your-order-header">
-        Your Orders <span>({orderdata?.OrderData?.orders?.length})</span>
+        Your Orders <span>({orderdata.length})</span>
       </h4>
       <Row className="justify-content-md-start orderlistrow">
         <Col lg={12} xs={12}>
-          {orderdata?.loader ? (
+          {loader ? (
             <Skeleton />
           ) : (
-            orderdata?.OrderData?.orders?.map((i, index) => {
+            orderdata.map((i, index) => {
               return (
                 <Link to={`/oderdetail/${i._id}`} key={index}>
                   <Order i={i} />

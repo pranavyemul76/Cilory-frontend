@@ -1,17 +1,11 @@
 import React from "react";
-import "../../Style/NavBar/RightUserNav.css";
-import UserComponents from "./UserComponents";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-function RightUserNav() {
-  const cartcount = useSelector((state) => {
-    return state.cartslic.count;
-  });
-
+import LogoutButton from "./LogoutButton";
+function UsercomponentPhone({ SetNavShow, NavShow }) {
   return (
-    <div className="RightUserNav">
-      <div className="profile">
-        <Link to="/account/overview">
+    <>
+      <li className="UserDetailLinks">
+        <Link to="/account/overview" onClick={() => SetNavShow(!NavShow)}>
           <svg
             data-v-4577ec70=""
             fill="#2196F3"
@@ -27,12 +21,9 @@ function RightUserNav() {
           </svg>
           <span>Profile</span>
         </Link>
-
-        <UserComponents />
-      </div>
-
-      <div>
-        <Link to="/">
+      </li>
+      <li className="UserDetailLinks">
+        <Link to="/account/overview" onClick={() => SetNavShow(!NavShow)}>
           <svg
             data-v-4577ec70=""
             viewBox="-2 -24 30 30"
@@ -49,11 +40,9 @@ function RightUserNav() {
           </svg>
           <span>Whishlist</span>
         </Link>
-      </div>
-
-      <div>
-        {<div className="cart-count">{cartcount || 0}</div>}
-        <Link to="/checkout/cart">
+      </li>
+      <li className="UserDetailLinks">
+        <Link to="/checkout/cart" onClick={() => SetNavShow(!NavShow)}>
           <svg
             data-v-4577ec70=""
             viewBox="-1 -23 27 30"
@@ -66,14 +55,16 @@ function RightUserNav() {
               fill="#ff9100"
               transform="scale(0.014, -0.014)"
               d="M1757 128l35 -313q3 -28 -16 -50q-19 -21 -48 -21h-1664q-29 0 -48 21q-19 22 -16 50l35 313h1722zM1664 967l86 -775h-1708l86 775q3 24 21 40.5t43 16.5h256v-128q0 -53 37.5 -90.5t90.5 -37.5t90.5 37.5t37.5 90.5v128h384v-128q0 -53 37.5 -90.5t90.5 -37.5
-    t90.5 37.5t37.5 90.5v128h256q25 0 43 -16.5t21 -40.5zM1280 1152v-256q0 -26 -19 -45t-45 -19t-45 19t-19 45v256q0 106 -75 181t-181 75t-181 -75t-75 -181v-256q0 -26 -19 -45t-45 -19t-45 19t-19 45v256q0 159 112.5 271.5t271.5 112.5t271.5 -112.5t112.5 -271.5z"
+t90.5 37.5t37.5 90.5v128h256q25 0 43 -16.5t21 -40.5zM1280 1152v-256q0 -26 -19 -45t-45 -19t-45 19t-19 45v256q0 106 -75 181t-181 75t-181 -75t-75 -181v-256q0 -26 -19 -45t-45 -19t-45 19t-19 45v256q0 159 112.5 271.5t271.5 112.5t271.5 -112.5t112.5 -271.5z"
             ></path>
           </svg>
-          <span>cartd</span>
+
+          <span>Cart</span>
         </Link>
-      </div>
-    </div>
+      </li>
+      <LogoutButton />
+    </>
   );
 }
 
-export default RightUserNav;
+export default UsercomponentPhone;

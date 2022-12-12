@@ -13,7 +13,21 @@
   display: flex;
   align-items: center;
 }
-
+.cart-count {
+  color: brown;
+  position: absolute;
+  top: 0%;
+  left: 70%;
+  font-size: 13px;
+  font-weight: 700;
+  background-color: blueviolet;
+  border-radius: 50%;
+  color: white;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  z-index: 1;
+}
 .logo {
   width: 10%;
 }

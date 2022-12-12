@@ -96,7 +96,7 @@ function HomePage() {
               />
             </Link>
             <div className="category-name-discount-title">
-              <div className="category-title"> Plain T-shirt</div>
+              <div className="category-title">T-shirt</div>
             </div>
           </Col>
           <Col>
@@ -114,47 +114,55 @@ function HomePage() {
           </Col>
 
           <Col>
-            <Image
-              src={
-                "https://i.pinimg.com/564x/38/ad/2b/38ad2be05146924c2ed80f6fdf8c240d.jpg"
-              }
-              alt="none"
-            />
+            <Link to="/men-tshirt">
+              <Image
+                src={
+                  "https://i.pinimg.com/564x/38/ad/2b/38ad2be05146924c2ed80f6fdf8c240d.jpg"
+                }
+                alt="none"
+              />
+              <div className="category-name-discount-title">
+                <div className="category-title"> Collar T-shirt</div>
+              </div>
+            </Link>
+          </Col>
+          <Col>
+            <Link to="/men-Shirt">
+              <Image
+                src={
+                  "https://i.pinimg.com/564x/0a/76/f9/0a76f9dac14165d46b7abf3638d93425.jpg"
+                }
+                alt="none"
+              />
+            </Link>
             <div className="category-name-discount-title">
-              <div className="category-title"> Plain T-shirt</div>
+              <div className="category-title"> Printed shirt</div>
             </div>
           </Col>
           <Col>
-            <Image
-              src={
-                "https://i.pinimg.com/564x/0a/76/f9/0a76f9dac14165d46b7abf3638d93425.jpg"
-              }
-              alt="none"
-            />
+            <Link to="/men-Shirt">
+              <Image
+                src={
+                  "https://i.pinimg.com/736x/98/03/9c/98039ced4b8e9a835c4cb93e9f9bebe2.jpg"
+                }
+                alt="none"
+              />
+            </Link>
             <div className="category-name-discount-title">
-              <div className="category-title"> Plain T-shirt</div>
+              <div className="category-title"> Shirt</div>
             </div>
           </Col>
           <Col>
-            <Image
-              src={
-                "https://i.pinimg.com/736x/98/03/9c/98039ced4b8e9a835c4cb93e9f9bebe2.jpg"
-              }
-              alt="none"
-            />
+            <Link to="/men-Shirt">
+              <Image
+                src={
+                  "https://i.pinimg.com/564x/93/79/20/9379206c926836a05650d3a6541e41ba.jpg"
+                }
+                alt="none"
+              />
+            </Link>
             <div className="category-name-discount-title">
-              <div className="category-title"> Plain T-shirt</div>
-            </div>
-          </Col>
-          <Col>
-            <Image
-              src={
-                "https://i.pinimg.com/564x/93/79/20/9379206c926836a05650d3a6541e41ba.jpg"
-              }
-              alt="none"
-            />
-            <div className="category-name-discount-title">
-              <div className="category-title"> Plain T-shirt</div>
+              <div className="category-title"> Plain shirt</div>
             </div>
           </Col>
         </Row>
@@ -164,7 +172,7 @@ function HomePage() {
           lg={6}
         >
           <Col>
-            <Link to="women-tshirt">
+            <Link to="/women-Dresses">
               <Image
                 src={
                   "https://i.pinimg.com/564x/fc/9b/77/fc9b77ff516a89daad5ec0d01a33b8df.jpg"
@@ -177,12 +185,14 @@ function HomePage() {
             </div>
           </Col>
           <Col>
-            <Image
-              src={
-                "https://i.pinimg.com/564x/1a/45/9b/1a459bfa515adb60b11079c07ccd862d.jpg"
-              }
-              alt="none"
-            />
+            <Link to="/women-Dresses">
+              <Image
+                src={
+                  "https://i.pinimg.com/564x/1a/45/9b/1a459bfa515adb60b11079c07ccd862d.jpg"
+                }
+                alt="none"
+              />
+            </Link>
             <div className="category-name-discount-title">
               <div className="category-title"> Plain T-shirt</div>
             </div>
@@ -200,34 +210,40 @@ function HomePage() {
             </div>
           </Col>
           <Col>
-            <Image
-              src={
-                "https://i.pinimg.com/564x/54/09/48/5409489b769464694d111ff7e6a0df23.jpg"
-              }
-              alt="none"
-            />
+            <Link to="/women-tops">
+              <Image
+                src={
+                  "https://i.pinimg.com/564x/54/09/48/5409489b769464694d111ff7e6a0df23.jpg"
+                }
+                alt="none"
+              />
+            </Link>
             <div className="category-name-discount-title">
               <div className="category-title"> Plain T-shirt</div>
             </div>
           </Col>
           <Col>
-            <Image
-              src={
-                "https://i.pinimg.com/564x/d1/35/cf/d135cf6e85dfffedd1f3d83a4eee3d2f.jpg"
-              }
-              alt="none"
-            />
+            <Link to="/women-Dresses">
+              <Image
+                src={
+                  "https://i.pinimg.com/564x/d1/35/cf/d135cf6e85dfffedd1f3d83a4eee3d2f.jpg"
+                }
+                alt="none"
+              />
+            </Link>
             <div className="category-name-discount-title">
               <div className="category-title"> Plain T-shirt</div>
             </div>
           </Col>
           <Col>
-            <Image
-              src={
-                "https://i.pinimg.com/564x/90/04/0e/90040e089223ded5b69e394f08f569a6.jpg"
-              }
-              alt="none"
-            />
+            <Link to="/women-tops">
+              <Image
+                src={
+                  "https://i.pinimg.com/564x/90/04/0e/90040e089223ded5b69e394f08f569a6.jpg"
+                }
+                alt="none"
+              />
+            </Link>
             <div className="category-name-discount-title">
               <div className="category-title"> Plain T-shirt</div>
             </div>

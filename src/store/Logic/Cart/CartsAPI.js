@@ -1,4 +1,4 @@
-import { PrivateRoute } from "../../Services/Axiosservices";
+import { PrivateRoute } from "../../../Services/Axiosservices";
 
 export function AddToCartAPI(id, size) {
   return PrivateRoute.post("/addtocart", { product: id, size: size });
